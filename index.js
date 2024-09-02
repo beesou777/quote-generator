@@ -29,9 +29,9 @@ clients.once("ready", async(bot) => {
     }, 10000);
     await generateQuote();
     const channel = clients.channels.cache.get("1279091593743437908");
-    if(channel && quote){
-        channel.send(quote);
-    }else{
+   if (channel && quote) {
+            channel.send("```"+"Daily Quote: \n"+quote + "```");
+    } else {
         console.log("channel not found")
     }
 });  
