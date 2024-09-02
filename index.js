@@ -21,8 +21,12 @@ clients.login(process.env.APIKEY).catch((err) => {
     console.error('Failed to log in:', err);
 });
 
-clients.on("ready", async(bot) => {
+clients.once("ready", async(bot) => {
     console.log(`Logged in as ${bot.user.tag}!`);
+    setTimeout(() => {
+        console.log('Stopping the script after 10 seconds');
+        process.exit(1);
+    }, 10000);
     await generateQuote();
     const channel = clients.channels.cache.get("1279091593743437908");
     if(channel && quote){
