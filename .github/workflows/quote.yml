@@ -23,6 +23,19 @@ jobs:
         run: npm install
 
       - name: Generate quote
+      
         env:
            APIKEY: ${{ secrets.DISCORD_BOT_TOKEN }}
-        run: node index.js
+        run: |
+          # Start a background job to sleep for 10 seconds
+          (
+            sleep 10
+            echo "Timeout reached. Exiting the job."
+            exit 1
+          ) &
+          
+          # Run your main script
+          node index.js
+          
+          # Wait for the background timeout job to finish
+          wait
