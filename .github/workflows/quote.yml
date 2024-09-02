@@ -1,27 +1,26 @@
-name : quote generator
+name: Quote Generator
 
 on:
   schedule:
+    # Runs every 5 minutes, as GitHub Actions cannot run more frequently
     - cron: "*/1 * * * *"
   workflow_dispatch:
 
 jobs:
   build:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: checkout code
-      uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-    - name: install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: generate quote
-      run: node index.js
-
-    
+      - name: Generate quote
+        run: node index.js
