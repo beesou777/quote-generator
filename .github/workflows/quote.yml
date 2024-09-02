@@ -1,0 +1,27 @@
+name : quote generator
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+
+    - name: setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: install dependencies
+      run: npm install
+
+    - name: generate quote
+      run: node index.js
+
+    
